@@ -37,7 +37,7 @@ export default function Music() {
       <div className="flex flex-col grow">
         <div>
           <h3 className="text-lg font-semibold">
-            California Dreamin' (radio Edit)
+            California Dreamin (radio Edit)
           </h3>
           <p>DJ Dark, Mentol</p>
         </div>

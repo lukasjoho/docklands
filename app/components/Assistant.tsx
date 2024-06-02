@@ -36,7 +36,10 @@ export default function Assistant() {
               const isUser = m.role === "user";
               if (isUser) {
                 return (
-                  <div className="bg-slate-100 rounded-full px-4 py-2 ml-16 self-end text-lg">
+                  <div
+                    key={m.id}
+                    className="bg-slate-100 rounded-full px-4 py-2 ml-16 self-end text-lg"
+                  >
                     {m.content}
                   </div>
                 );
