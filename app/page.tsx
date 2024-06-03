@@ -14,6 +14,8 @@ export default function Home() {
           fill
           style={{ objectFit: "cover" }}
           className="z-0"
+          priority
+          sizes="400px"
         />
         <div className="relative h-full w-full flex flex-col">
           <div className="space-y-2 p-6 pb-8 bg-gradient-to-b from-black/30 to-transparent">

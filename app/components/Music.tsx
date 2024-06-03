@@ -32,6 +32,7 @@ export default function Music() {
           alt=""
           fill
           style={{ objectFit: "cover" }}
+          sizes="250px"
         />
       </div>
       <div className="bg-secondary p-4 rounded-2xl w-full space-y-2">

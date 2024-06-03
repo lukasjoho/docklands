@@ -26,11 +26,7 @@ export default function Assistant() {
   return (
     <div className="grow flex flex-col overflow-hidden p-4 pt-0">
       {/* <pre>{JSON.stringify(messages, null, 2)}</pre> */}
-      {messages.length < 1 && (
-        <div>
-          <WelcomeMessage />
-        </div>
-      )}
+      {messages.length < 1 && <WelcomeMessage />}
       {messages.length > 0 && (
         <div
           className="grow flex flex-col overflow-scroll"
@@ -89,6 +85,7 @@ function Messages({
 }) {
   return messages.slice().map((m) => {
     const isUser = m.role === "user";
+    const isLastMessage = messages[messages.length - 1].id === m.id;
     if (isUser) {
       return (
         <div
@@ -104,7 +101,11 @@ function Messages({
         <div className="h-[1.75rem] grid place-items-center">
           <BotMessageSquare className="w-5 h-5 shrink-0" />
         </div>
-        <p className={cn(status === "in_progress" && "spinner-cust")}>
+        <p
+          className={cn(
+            status === "in_progress" && isLastMessage && "spinner-cust"
+          )}
+        >
           {m.content}
         </p>
       </div>
