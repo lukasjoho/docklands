@@ -51,35 +51,39 @@ export default async function Weather({ target_date = "2024-06-07" }) {
     return day === target_date && time === "12:00:00";
   })[0];
   return (
-    <div className="border rounded-xl p-6">
-      <div className="flex">
-        <div>
-          <div className="text-4xl font-semibold">
-            {kelvinToCelcius(weather.main.temp)}°C
-          </div>
-          <p>Samstag 08.06, Münster</p>
+    <div className="flex flex-col items-center gap-8">
+      <div className="flex flex-col items-center gap-4">
+        <WeatherIcon
+          className="w-48 h-48"
+          weatherConditions={weather.weather[0].description}
+        />
+        <div className="text-6xl font-semibold relative">
+          {kelvinToCelcius(weather.main.temp)}°C
         </div>
-        <WeatherIcon weatherConditions={weather.weather[0].description} />
       </div>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-3 w-full px-4">
         <PropertyIcon
           icon="Wind"
           label="Wind"
-          value={weather.wind.speed + "km/h"}
+          value={weather.wind.speed.toFixed(0)}
+          suffix="km/h"
         />
         <PropertyIcon
           icon="Droplets"
-          label="Humidity"
-          value={weather.main.humidity + "%"}
+          label="Luftfeuchte"
+          value={weather.main.humidity}
+          suffix="%"
         />
         <PropertyIcon
           icon="CloudRain"
           label="Regen"
-          value={weather.pop + "%"}
+          value={weather.pop}
+          suffix="%"
         />
       </div>
-
-      {/* <pre>{JSON.stringify(weather, null, 2)}</pre> */}
+      <p className="text-muted-foreground px-4">
+        Tipp: Pack' einen Pulli für später ein.
+      </p>
     </div>
   );
 }
@@ -88,16 +92,23 @@ function PropertyIcon({
   icon,
   label,
   value,
+  suffix,
 }: {
   icon: keyof typeof icons;
   label: string;
   value: string | number;
+  suffix?: string;
 }) {
   return (
     <div className="flex flex-col items-center gap-1">
       <Icon name={icon} className="w-5 h-5 mb-1" />
-      <div className="text-xl font-semibold">{value}</div>
-      <h2>{label}</h2>
+      <div className="text-xl font-semibold">
+        {value}
+        {suffix && <span className="text-base">{suffix}</span>}
+      </div>
+      <h2 className="text-muted-foreground text-xs uppercase tracking-wider font-medium">
+        {label}
+      </h2>
     </div>
   );
 }
