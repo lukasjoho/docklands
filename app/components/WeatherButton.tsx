@@ -17,7 +17,7 @@ export default function WeatherButton() {
   return (
     <Drawer>
       <DrawerTrigger asChild className="text-lg">
-        <CategoryButton icon={<Sun />} label="Wetter" />
+        <CategoryButton icon="Sun" label="Wetter" />
       </DrawerTrigger>
       <DrawerContent className="pb-8">
         <DrawerHeader>

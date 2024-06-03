@@ -3,6 +3,7 @@ import { Clock, MapPin } from "lucide-react";
 import ChatDrawer from "./components/ChatDrawer";
 import WeatherButton from "./components/WeatherButton";
 import MusicButton from "./components/MusicButton";
+import MapsButton from "./components/MapsButton";
 
 export default function Home() {
   return (
@@ -35,8 +36,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="p-6 grid grid-cols-2 mt-auto gap-3">
-            <div className="col-span-2">
+          <div className="p-6 grid grid-cols-3 mt-auto gap-3">
+            <div className="col-span-3">
               <ChatDrawer />
             </div>
             <div className="col-span-1">
@@ -44,6 +45,9 @@ export default function Home() {
             </div>
             <div className="col-span-1">
               <MusicButton />
+            </div>
+            <div className="col-span-1">
+              <MapsButton />
             </div>
           </div>
         </div>

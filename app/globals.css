@@ -91,3 +91,18 @@
     transform: rotate(360deg);
   }
 }
+
+.gmnoprint {
+  display: none !important;
+}
+
+a[href^="http://maps.google.com/maps"],
+a[href^="https://maps.google.com/maps"],
+a[href^="https://www.google.com/maps"]
+{
+  display: none !important;
+}
+
+div[vaul-handle] {
+  @apply bg-blue-500 h-2 w-24 bg-muted;
+}

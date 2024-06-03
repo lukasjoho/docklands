@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
@@ -16,8 +17,8 @@ import Music from "./Music";
 export default function MusicButton() {
   return (
     <Drawer>
-      <DrawerTrigger asChild className="text-lg">
-        <CategoryButton icon={<MusicIcon />} label="Musik" />
+      <DrawerTrigger asChild>
+        <CategoryButton icon="Music" label="Musik" />
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
