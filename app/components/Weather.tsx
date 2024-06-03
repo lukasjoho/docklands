@@ -82,7 +82,7 @@ export default async function Weather({ target_date = "2024-06-07" }) {
         />
       </div>
       <p className="text-muted-foreground px-4">
-        Tipp: Pack' einen Pulli für später ein.
+        Tipp: Pack&apos; einen Pulli für später ein.
       </p>
     </div>
   );

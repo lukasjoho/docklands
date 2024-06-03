@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/drawer";
 import { Music as MusicIcon, Sun } from "lucide-react";
 import CategoryButton from "./CategoryButton";
-import Weather from "./Weather";
 import Music from "./Music";
 
 export default function MusicButton() {
@@ -22,7 +21,7 @@ export default function MusicButton() {
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Groov' dich ein</DrawerTitle>
+          <DrawerTitle>Groov&apos; dich ein</DrawerTitle>
           <DrawerDescription>
             The ALmighty und Fraed werden uns die feinsten Tunes auflegen. Hier
             ist schonmal ein Vorgeschmack.
