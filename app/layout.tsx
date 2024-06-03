@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Meet Again",
   description: "Docklands Warm-Up am 8. Juni am Aasee.",
+  metadataBase: new URL("https://meet-again.vercel.com"),
 };
 
 export default function RootLayout({
