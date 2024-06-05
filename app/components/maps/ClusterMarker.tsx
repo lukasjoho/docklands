@@ -3,7 +3,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Ref, useState } from "react";
+import { Ref, RefObject, useState } from "react";
 import { GeoJSON, SuperCluster } from "./types";
 import LocationMarker from "./LocationMarker";
 import { cn } from "@/lib/utils";
@@ -17,7 +17,7 @@ export default function ClusterMarker({
 }: {
   cluster: any;
   points: any[];
-  mapRef: Ref<any>;
+  mapRef: RefObject<any>;
   supercluster: SuperCluster;
   className?: string;
 }) {
