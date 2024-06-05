@@ -1,16 +1,17 @@
 import Image from "next/image";
 import { Clock, MapPin } from "lucide-react";
-import ChatDrawer from "./components/ChatDrawer";
-import WeatherButton from "./components/WeatherButton";
-import MusicButton from "./components/MusicButton";
-import MapsButton from "./components/MapsButton";
+import WeatherButton from "./components/weather/WeatherButton";
+import MusicButton from "./components/music/MusicButton";
+import MapsButton from "./components/maps/MapsButton";
+import ChatButton from "./components/chat/ChatButton";
 
+export const revalidate = 7200;
 export default function Home() {
   return (
     <>
       <div className="lg:hidden relative w-screen h-[100dvh]" style={{}}>
         <Image
-          src="/images/cover-mobile-trees.jpg"
+          src="/images/docklands-cover-blue.jpg"
           alt=""
           fill
           style={{ objectFit: "cover" }}
@@ -19,26 +20,26 @@ export default function Home() {
           sizes="400px"
         />
         <div className="relative h-full w-full flex flex-col">
-          <div className="space-y-2 p-6 pb-8 bg-gradient-to-b from-black/30 to-transparent">
-            <h1 className="text-4xl text-white font-bold">
-              Meet Again. <br />
-              <span className="opacity-75 text-3xl">Docklands Warm-Up.</span>
+          <div className="space-y-1 p-6 pb-8 bg-gradient-to-b from-black/30 to-transparent">
+            <h1 className="text-xl text-white font-bold tracking-tight">
+              <span className="opacity-75">Docklands Warm-Up</span> <br />
+              <span className="opacity-100 text-4xl">Meet Again.</span>
             </h1>
-            <div className="space-y-1 text-white font-medium">
+            <div className=" text-white font-medium">
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-4 h-4" />
                 <p>Pardo-Steg, Aasee</p>
               </div>
               <div className="flex items-center gap-1.5">
                 <Clock className="w-4 h-4" />
-                <p>Samstag 08. Juni, 10:30</p>
+                <p>Samstag, 8. Juni, 10:30</p>
               </div>
             </div>
           </div>
 
           <div className="p-6 grid grid-cols-3 mt-auto gap-3">
             <div className="col-span-3">
-              <ChatDrawer />
+              <ChatButton />
             </div>
             <div className="col-span-1">
               <WeatherButton />

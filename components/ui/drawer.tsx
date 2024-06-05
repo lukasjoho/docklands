@@ -49,25 +49,31 @@ const DrawerHandle = React.forwardRef<
 ));
 DrawerHandle.displayName = "DrawerHandle";
 
+interface DrawerContentProps
+  extends React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> {
+  max?: boolean;
+}
+
 const DrawerContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
->(({ className, children, ...props }, ref) => (
+  DrawerContentProps
+>(({ className, children, max = false, ...props }, ref) => (
   <DrawerPortal>
     <DrawerOverlay />
     <DrawerPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-3xl shadow-xl bg-background",
+        "fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-3xl shadow-xl bg-background p-4 pt-0",
         className
       )}
       style={{
         WebkitTapHighlightColor: "transparent",
-        maxHeight: "calc(100dvh - 48px)",
+        maxHeight: "calc(100dvh - 32px)",
+        height: max ? "calc(100dvh - 32px)" : undefined,
       }}
       {...props}
     >
-      <DrawerHandle className="mt-4" />
+      <DrawerHandle className="mt-4 shrink-0" />
       {children}
     </DrawerPrimitive.Content>
   </DrawerPortal>
@@ -79,7 +85,7 @@ const DrawerHeader = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn("grid gap-1.5 p-4 text-center sm:text-left", className)}
+    className={cn("grid gap-2.5 p-4 text-center sm:text-left", className)}
     {...props}
   />
 );
@@ -117,7 +123,7 @@ const DrawerDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Description
     ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
+    className={cn("text-muted-foreground", className)}
     {...props}
   />
 ));

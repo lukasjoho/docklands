@@ -28,6 +28,9 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
@@ -105,4 +108,12 @@ a[href^="https://www.google.com/maps"]
 
 div[vaul-handle] {
   @apply bg-blue-500 h-2 w-24 bg-muted;
+}
+
+.input-cust {
+  @apply text-2xl font-semibold border-none focus-visible:ring-0 rounded-none p-0 placeholder:text-muted-foreground/50 w-full;
+}
+
+span[vaul-handle-hitarea] {
+  @apply h-[160px] w-[300px];
 }

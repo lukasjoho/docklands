@@ -1,27 +1,24 @@
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { BotMessageSquare, Sparkles } from "lucide-react";
+import { BotMessageSquare } from "lucide-react";
 import Assistant from "./Assistant";
 
-export default function ChatDrawer() {
+export default function ChatButton() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="white" className="text-lg h-12 rounded-full w-full">
+        <Button variant="white" className="w-full" size="lg">
           <BotMessageSquare />
           Münst·E starten
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="h-[1000px]">
+      <DrawerContent max>
         <DrawerHeader>
           <DrawerTitle>Frag Münst·E</DrawerTitle>
         </DrawerHeader>

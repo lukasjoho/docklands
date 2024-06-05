@@ -1,16 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-
-export type WeatherConditions =
-  | "few clouds"
-  | "clear sky"
-  | "scattered clouds"
-  | "broken clouds"
-  | "shower rain"
-  | "rain"
-  | "thunderstorm"
-  | "snow"
-  | "mist";
+import { WeatherConditions } from "./types";
 
 interface WeatherIconProps extends React.HTMLAttributes<HTMLDivElement> {
   weatherConditions: WeatherConditions;
@@ -29,7 +19,10 @@ export default function WeatherIcon({
       icon = "clear-sky.png";
       break;
     case "scattered clouds":
-      icon = "scattered-clouds.png";
+      icon = "few-clouds.png";
+      break;
+    case "broken clouds":
+      icon = "broken-clouds.png";
       break;
     case "shower rain":
       icon = "shower-rain.png";
@@ -47,13 +40,14 @@ export default function WeatherIcon({
       icon = "clear-sky.png";
   }
   return (
-    <div className={cn("w-32 h-32 relative", className)}>
-      <Image
-        src={`/images/${icon}`}
-        alt=""
-        fill
-        style={{ objectFit: "contain" }}
-      />
-    </div>
+    <Image
+      src={`/images/${icon}`}
+      alt=""
+      width={48}
+      height={48}
+      style={{ objectFit: "contain" }}
+      sizes="300px"
+      className={cn("", className)}
+    />
   );
 }

@@ -1,17 +1,13 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Music as MusicIcon, Sun } from "lucide-react";
-import CategoryButton from "./CategoryButton";
+import CategoryButton from "../home/CategoryButton";
 import Music from "./Music";
 
 export default function MusicButton() {
@@ -20,12 +16,11 @@ export default function MusicButton() {
       <DrawerTrigger asChild>
         <CategoryButton icon="Music" label="Musik" />
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent max>
         <DrawerHeader>
-          <DrawerTitle>Groov&apos; dich ein</DrawerTitle>
+          <DrawerTitle>The ALmighty</DrawerTitle>
           <DrawerDescription>
-            The ALmighty und Fraed werden uns die feinsten Tunes auflegen. Hier
-            ist schonmal ein Vorgeschmack.
+            Groov&apos; dich ein. Es wird fein!
           </DrawerDescription>
         </DrawerHeader>
         <Music />
