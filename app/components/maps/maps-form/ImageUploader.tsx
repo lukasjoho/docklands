@@ -2,8 +2,9 @@ import { useUploadThing } from "@/lib/uploadthing";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import AvatarSelector from "./AvatarSelector";
-import { ImagePlus } from "lucide-react";
+import { ImagePlus, Loader2 } from "lucide-react";
 import Image from "next/image";
+import { set } from "zod";
 
 interface ImageUploaderProps {
   imageUrl?: string;
@@ -19,7 +20,6 @@ export default function ImageUploader({
   const [progress, setProgress] = useState<number | undefined>();
   const { startUpload, isUploading } = useUploadThing("imageUploader", {
     onUploadProgress: (progress) => {
-      console.log("Progress: ", progress);
       setProgress(progress);
     },
     onClientUploadComplete: (res) => {
@@ -27,8 +27,12 @@ export default function ImageUploader({
       toast.success("Dein Bild wurde hochgeladen.");
     },
     onUploadError: (error) => {
-      console.error("Error: ", error);
-      toast.success("Fehler. Dein Bild konnte nicht hochgeladen werden.");
+      if (error.message.includes("FileSizeMismatch")) {
+        toast.error("Bitte lade ein Bild unter 16MB hoch.");
+      } else {
+        toast.error("Fehler. Dein Bild konnte nicht hochgeladen werden.");
+      }
+      setProgress(undefined);
     },
     onBeforeUploadBegin: (files) => {
       console.log("Files before: ", files);
@@ -54,19 +58,37 @@ export default function ImageUploader({
   }, [files, startUpload]);
   return (
     <div>
-      <label className="block relative w-48 h-48 bg-muted rounded-full overflow-hidden">
+      <label className="block relative w-48 h-48 bg-muted rounded-full overflow-hidden shadow-lg">
         <input
           id="file"
           type="file"
           className="hidden"
           onChange={handleFileChange}
         />
-        {!imageUrl && (
+        {!imageUrl && typeof progress !== "number" && (
           <div className="w-full h-full relative grid place-items-center">
             <ImagePlus className="w-8 h-8" />
           </div>
         )}
-        {imageUrl && <Image src={imageUrl} alt="" fill sizes="256px" />}
+        {typeof progress === "number" && progress !== 100 && (
+          <div className="w-full h-full relative grid place-items-center">
+            <span className="text-xl font-semibold">{progress}%</span>
+          </div>
+        )}
+        {progress === 100 && isUploading && (
+          <div className="w-full h-full relative grid place-items-center">
+            <Loader2 className="animate-spin w-8 h-8" />
+          </div>
+        )}
+        {imageUrl && !isUploading && (
+          <Image
+            src={imageUrl}
+            alt=""
+            fill
+            sizes="256px"
+            style={{ objectFit: "cover" }}
+          />
+        )}
       </label>
     </div>
   );
