@@ -76,7 +76,7 @@ export default function MapsButton() {
   return (
     <Drawer handleOnly>
       <DrawerTrigger asChild>
-        <CategoryButton icon="Map" label="Städte" />
+        <CategoryButton icon="Map" label="Karte" />
       </DrawerTrigger>
       <DrawerContent className="pb-4 px-4" max>
         <DrawerHeader>

@@ -26,8 +26,9 @@ export default function ClusterMarker({
   const [open, setOpen] = useState(false);
   return (
     <Tooltip key={cluster.id} open={open} onOpenChange={setOpen}>
-      <TooltipTrigger disabled asChild>
+      <TooltipTrigger key={cluster.id} disabled asChild>
         <div
+          key={cluster.id}
           className={cn(
             "bg-primary ring-offset-background ring-[1.5px] ring-offset-2 ring-primary rounded-full text-white grid place-items-center font-medium text-sm",
             className
