@@ -4,7 +4,6 @@ import { DayWeather } from "./types";
 import { kelvinToCelcius } from "./utils";
 
 const URL = `https://api.openweathermap.org/data/2.5/forecast?lat=51.961563&lon=7.628202&appid=${process.env.WEATHER_API_KEY}`;
-// const URL = `https://api.openweathermap.org/data/3.0/onecall/day_summary?lat=51.961563&lon=7.628202&date=2024-06-08&appid=${process.env.WEATHER_API_KEY}`;
 
 export default async function Weather({ target_date = "2024-06-08" }) {
   const res = await fetch(URL);
