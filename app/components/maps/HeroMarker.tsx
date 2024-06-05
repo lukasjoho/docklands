@@ -11,8 +11,8 @@ export default function HeroMarker({ lat, lng }: { lat: number; lng: number }) {
   return (
     <Popover>
       <PopoverTrigger>
-        <div className="bg-primary w-6 h-6 text-white grid place-items-center rounded-md overflow-hidden">
-          <Music className="w-3 h-3" />
+        <div className="bg-white shadow-md w-5 h-5 grid place-items-center rounded-md overflow-hidden">
+          🎶
         </div>
       </PopoverTrigger>
       <PopoverContent className="w-48 rounded-xl space-y-2">

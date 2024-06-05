@@ -110,7 +110,7 @@ export default function MapsDrawerContent({
               {step === 0 && (
                 <Button
                   className="w-[128px]"
-                  disabled={!form.watch("username")}
+                  disabled={form.watch("username").length < 2}
                   onClick={() => setStep(1)}
                 >
                   Weiter

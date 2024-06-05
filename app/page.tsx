@@ -4,21 +4,24 @@ import WeatherButton from "./components/weather/WeatherButton";
 import MusicButton from "./components/music/MusicButton";
 import MapsButton from "./components/maps/MapsButton";
 import ChatButton from "./components/chat/ChatButton";
+import ImageAnimation from "./components/home/ImageAnimation";
 
 export const revalidate = 7200;
 export default function Home() {
   return (
     <>
       <div className="lg:hidden relative w-screen h-[100dvh]" style={{}}>
-        <Image
-          src="/images/docklands-cover-blue.jpg"
-          alt=""
-          fill
-          style={{ objectFit: "cover" }}
-          className="z-0"
-          priority
-          sizes="400px"
-        />
+        <ImageAnimation>
+          <Image
+            src="/images/docklands-cover-blue.jpg"
+            alt=""
+            fill
+            style={{ objectFit: "cover" }}
+            priority
+            sizes="400px"
+            className="z-0"
+          />
+        </ImageAnimation>
         <div className="relative h-full w-full flex flex-col">
           <div className="space-y-1 p-6 pb-8 bg-gradient-to-b from-black/30 to-transparent">
             <h1 className="text-xl text-white font-bold tracking-tight">

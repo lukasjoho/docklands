@@ -36,7 +36,15 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           {name.slice(0, 2)}
         </span>
       )}
-      {src && <Image src={src} alt="" fill sizes="80px" />}
+      {src && (
+        <Image
+          src={src}
+          alt=""
+          fill
+          sizes="80px"
+          style={{ objectFit: "cover" }}
+        />
+      )}
     </div>
   )
 );
