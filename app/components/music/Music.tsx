@@ -10,7 +10,7 @@ export default function Music() {
           alt=""
           fill
           style={{ objectFit: "contain" }}
-          sizes="250px"
+          sizes="400px"
         />
       </div>
       <AudioPanel />

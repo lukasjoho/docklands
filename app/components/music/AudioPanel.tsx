@@ -34,6 +34,7 @@ export default function AudioPanel() {
           height={100}
           className="w-16 h-16 shrink-0 rounded-lg"
           style={{ objectFit: "cover" }}
+          sizes="64px"
         />
         <div className="overflow-hidden">
           <h3 className="font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
