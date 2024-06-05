@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { AssistantStatus } from "ai";
 import { BotMessageSquare } from "lucide-react";
+import { RenderMessage } from "./ReactMarkdown";
 
 export default function Messages({
   messages,
@@ -27,13 +28,15 @@ export default function Messages({
         <div className="h-[1.75rem] grid place-items-center">
           <BotMessageSquare className="w-5 h-5 shrink-0" />
         </div>
-        <p
+        {/* <p
           className={cn(
             status === "in_progress" && isLastMessage && "spinner-cust"
           )}
         >
-          {m.content}
-        </p>
+        </p> */}
+        <div>
+          <RenderMessage>{m.content}</RenderMessage>
+        </div>
       </div>
     );
   });

@@ -69,7 +69,7 @@ const DrawerContent = React.forwardRef<
       style={{
         WebkitTapHighlightColor: "transparent",
         maxHeight: "calc(100dvh - 32px)",
-        height: max ? "calc(100dvh - 32px)" : undefined,
+        height: max ? "calc(100dvh - 48px)" : undefined,
       }}
       {...props}
     >
@@ -85,7 +85,7 @@ const DrawerHeader = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn("grid gap-2.5 p-4 text-center sm:text-left", className)}
+    className={cn("grid gap-1.5 p-4 text-center sm:text-left", className)}
     {...props}
   />
 );

@@ -18,7 +18,7 @@ export default function HeroMarker({ lat, lng }: { lat: number; lng: number }) {
       <PopoverContent className="w-48 rounded-xl space-y-2">
         <Image src={locationImage} alt="" className="w-full rounded-md" />
         <p className="text-sm text-muted-foreground">
-          Hier schallen die Beats übers Holz.
+          Hier ziehen die Beats ins Holz ein.
         </p>
       </PopoverContent>
     </Popover>

@@ -7,6 +7,7 @@ import ChatButton from "./components/chat/ChatButton";
 import ImageAnimation from "./components/home/ImageAnimation";
 
 export const revalidate = 7200;
+
 export default function Home() {
   return (
     <>
@@ -64,7 +65,7 @@ export default function Home() {
           style={{ objectFit: "cover" }}
         />
         <h1 className="relative text-6xl font-semibold text-white">
-          Besuch mich auf Mobile!
+          Besuche die Websit auf Mobile!
         </h1>
       </div>
     </>

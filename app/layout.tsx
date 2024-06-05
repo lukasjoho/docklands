@@ -9,9 +9,10 @@ import { Tooltip, TooltipProvider } from "@/components/ui/tooltip";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Meet Again",
-  description: "Docklands Warm-Up am 8. Juni am Aasee.",
-  metadataBase: new URL("https://meet-again.vercel.app"),
+  title: "Meet Again - 08. Juni - Pardo-Steg Münster",
+  description:
+    "Lass dir von Münst·E alle Fragen rund um das Docklands Warm-Up beantworten.",
+  metadataBase: new URL("https://meet-again.com"),
 };
 
 export default function RootLayout({

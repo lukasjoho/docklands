@@ -33,8 +33,8 @@ export default function ClusterMarker({
             className
           )}
           style={{
-            width: `${24 + ((pointCount - 2) / (points.length - 2)) * 16}px`,
-            height: `${24 + ((pointCount - 2) / (points.length - 2)) * 16}px`,
+            width: `${24 + ((pointCount - 2) / (points.length - 2)) * 8}px`,
+            height: `${24 + ((pointCount - 2) / (points.length - 2)) * 8}px`,
           }}
           onClick={() => {
             const expansionZoom = Math.min(

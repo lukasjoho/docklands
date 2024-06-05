@@ -20,7 +20,8 @@ export default function MusicButton() {
         <DrawerHeader>
           <DrawerTitle>The ALmighty</DrawerTitle>
           <DrawerDescription>
-            Groov&apos; dich ein. Es wird fein!
+            Groov&apos; dich schonmal ein. <br />
+            Es werden allmächtige Tunes!
           </DrawerDescription>
         </DrawerHeader>
         <Music />

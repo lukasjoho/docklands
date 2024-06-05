@@ -52,7 +52,7 @@ export default function AudioPanel() {
         </button>
       </div>
 
-      <audio id="a1" src="california-dreamin.mp3"></audio>
+      <audio id="a1" src="/audio/california-dreamin.mp3"></audio>
     </div>
   );
 }
