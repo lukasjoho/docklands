@@ -1,5 +1,6 @@
 import { AssistantResponse } from "ai";
 import OpenAI from "openai";
+import { cookies } from "next/headers";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
@@ -14,7 +15,9 @@ export async function POST(req: Request) {
     threadId: string | null;
     message: string;
   } = await req.json();
-
+  const cookieStore = cookies();
+  const userId = cookieStore.get("userId")?.value;
+  console.log("userId", userId);
   // Create a thread if needed
   const threadId = input.threadId ?? (await openai.beta.threads.create({})).id;
 

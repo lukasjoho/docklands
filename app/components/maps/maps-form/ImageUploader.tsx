@@ -85,7 +85,7 @@ export default function ImageUploader({
             src={imageUrl}
             alt=""
             fill
-            sizes="256px"
+            sizes="120px"
             style={{ objectFit: "cover" }}
           />
         )}

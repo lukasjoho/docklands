@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import QueryProvider from "./providers/QueryProvider";
 import CookieManager from "./components/shared/CookieManager";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         </main>
         <Toaster richColors position="top-center" />
         <CookieManager />
+        <Analytics />
       </body>
     </html>
   );

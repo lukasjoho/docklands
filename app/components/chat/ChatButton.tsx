@@ -9,7 +9,7 @@ import {
 import { BotMessageSquare } from "lucide-react";
 import Assistant from "./Assistant";
 
-export default function ChatButton() {
+export default function Chat() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -18,7 +18,7 @@ export default function ChatButton() {
           Münst·E starten
         </Button>
       </DrawerTrigger>
-      <DrawerContent max>
+      <DrawerContent max className="p-3 pt-0">
         <DrawerHeader>
           <DrawerTitle>Frag Münst·E</DrawerTitle>
         </DrawerHeader>

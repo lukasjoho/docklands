@@ -24,18 +24,22 @@ export default function ClusterMarker({
   const [longitude, latitude] = cluster.geometry.coordinates;
   const { cluster: isCluster, point_count: pointCount } = cluster.properties;
   const [open, setOpen] = useState(false);
+  console.log("points", pointCount, points.length);
+
+  const size =
+    points.length <= 2 ? 24 : 24 + ((pointCount - 2) / (points.length - 2)) * 8;
   return (
     <Popover key={cluster.id} open={open} onOpenChange={setOpen}>
       <PopoverTrigger key={cluster.id} disabled asChild>
         <div
           key={cluster.id}
           className={cn(
-            "bg-slate-600 border-[3px] border-slate-500 ring-offset-slate-400 ring-[3px] ring-offset-[3px] ring-slate-300 rounded-full text-white grid place-items-center text-xs",
+            "bg-slate-600 w-6 border-[3px] border-slate-500 aspect-square ring-offset-slate-400 ring-[3px] ring-offset-[3px] ring-slate-300 rounded-full text-white text-xs grid place-items-center",
             className
           )}
           style={{
-            width: `${24 + ((pointCount - 2) / (points.length - 2)) * 8}px`,
-            height: `${24 + ((pointCount - 2) / (points.length - 2)) * 8}px`,
+            width: size,
+            height: size,
           }}
           onClick={() => {
             const expansionZoom = Math.min(

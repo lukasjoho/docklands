@@ -51,3 +51,19 @@ export async function deleteUser({ id }: { id: string }) {
   });
   return user;
 }
+
+export async function createMessage({
+  text,
+  cookieUserId,
+}: {
+  text: string;
+  cookieUserId?: string;
+}) {
+  const message = await prisma.message.create({
+    data: {
+      text,
+      cookieUserId,
+    },
+  });
+  return message;
+}

@@ -17,7 +17,7 @@ const CategoryButton = forwardRef<HTMLButtonElement, CategoryButtonProps>(
         variant="none"
         size="default"
         className={cn(
-          "flex items-center gap-1.5 blur-cust text-white bg-white/10 border border-white w-full",
+          "flex items-center gap-1.5 blur-cust text-white bg-white/10 border-[1.5px] border-white w-full",
           className
         )}
         {...props}

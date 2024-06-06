@@ -7,6 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Messages from "./Messages";
 import WelcomeMessage from "./WelcomeMessage";
+import { createMessage } from "@/lib/actions";
+import { getCookie } from "cookies-next";
+import WhileTapper from "../shared/WhileTapper";
 
 export default function Assistant() {
   const { status, messages, input, handleInputChange, submitMessage } =
@@ -21,6 +24,12 @@ export default function Assistant() {
       scrollContainer.scrollTop = messageContainer.scrollHeight;
     }
   }, [messages]);
+
+  const handleSubmit = (e: any) => {
+    submitMessage(e);
+    const userIdCookie = getCookie("userId");
+    createMessage({ text: input, cookieUserId: userIdCookie });
+  };
 
   return (
     <div className="grow flex flex-col gap-4 overflow-hidden p-1 -m-1">
@@ -43,20 +52,18 @@ export default function Assistant() {
         )}
       </div>
 
-      <form onSubmit={submitMessage} className="mt-auto flex gap-2">
+      <form onSubmit={handleSubmit} className="mt-auto flex gap-2">
         <Input
           value={input}
           placeholder="Deine Frage..."
           onChange={handleInputChange}
           className="h-11"
         />
-        <Button
-          size="icon"
-          className="shrink-0"
-          disabled={status !== "awaiting_message"}
-        >
-          <CornerDownLeft className="w-4 h-4" />
-        </Button>
+        <WhileTapper className="shrink-0" scale={0.9}>
+          <Button size="icon" disabled={status !== "awaiting_message"}>
+            <CornerDownLeft className="w-4 h-4" />
+          </Button>
+        </WhileTapper>
       </form>
     </div>
   );

@@ -41,7 +41,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           src={src}
           alt=""
           fill
-          sizes="80px"
+          sizes="120px"
           style={{ objectFit: "cover" }}
         />
       )}

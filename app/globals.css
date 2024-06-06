@@ -117,3 +117,13 @@ div[vaul-handle] {
 span[vaul-handle-hitarea] {
   @apply h-[160px] w-[300px];
 }
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.blur-cust {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}

@@ -3,6 +3,8 @@ import { Pause, Play } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
+import { motion } from "framer-motion";
+
 export default function AudioPanel() {
   const [playing, setPlaying] = useState(false);
   function play() {
@@ -44,12 +46,15 @@ export default function AudioPanel() {
             DJ Dark, Mentol
           </p>
         </div>
-        <button
+        <motion.button
+          whileTap={{
+            scale: 0.85,
+          }}
           className="bg-slate-950 text-white w-16 h-16 grid place-items-center rounded-full self-end mt-auto shrink-0 grow-0 ml-auto"
           onClick={handlePlay}
         >
           {playing ? <Pause /> : <Play />}
-        </button>
+        </motion.button>
       </div>
 
       <audio id="a1" src="/audio/california-dreamin.mp3"></audio>

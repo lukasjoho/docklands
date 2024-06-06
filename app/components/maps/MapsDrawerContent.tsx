@@ -20,6 +20,7 @@ import PlaceInput from "./maps-form/PlaceInput";
 import ImageScreen from "./maps-form/ImageScreen";
 import useLocations from "@/lib/useLocations";
 import { getCookie } from "cookies-next";
+import WhileTapper from "../shared/WhileTapper";
 
 const formSchema = z.object({
   username: z
@@ -73,7 +74,7 @@ export default function MapsDrawerContent({
   const [step, setStep] = useState<number>(0);
 
   return (
-    <DrawerContent className="px-4 pb-4" max>
+    <DrawerContent className="px-8 pb-8" max>
       <DrawerHeader>
         <DrawerTitle>
           {step === 0 && "Wie heißt du?"}
@@ -92,51 +93,55 @@ export default function MapsDrawerContent({
             {step === 2 && <ImageScreen form={form} />}
 
             <div className="mt-auto flex justify-between">
-              <Button
-                type="button"
-                variant="secondary"
-                className="shrink-0"
-                size="icon"
-                onClick={() => {
-                  if (step === 0) {
-                    onClose?.();
-                  } else {
-                    setStep(step - 1);
-                  }
-                }}
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </Button>
-              {step === 0 && (
+              <WhileTapper scale={0.9}>
                 <Button
-                  className="w-[128px]"
-                  disabled={form.watch("username").length < 2}
-                  onClick={() => setStep(1)}
+                  type="button"
+                  variant="secondary"
+                  className="shrink-0"
+                  size="icon"
+                  onClick={() => {
+                    if (step === 0) {
+                      onClose?.();
+                    } else {
+                      setStep(step - 1);
+                    }
+                  }}
                 >
-                  Weiter
+                  <ChevronLeft className="w-5 h-5" />
                 </Button>
-              )}
-              {step === 1 && (
-                <Button
-                  className="w-[128px]"
-                  disabled={!form.watch("placeId")}
-                  onClick={() => setStep(2)}
-                >
-                  Weiter
-                </Button>
-              )}
-              {step === 2 && (
-                <Button
-                  type="submit"
-                  className="w-[128px]"
-                  disabled={form.formState.isSubmitting}
-                >
-                  {form.formState.isSubmitting && (
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                  )}
-                  Fertig
-                </Button>
-              )}
+              </WhileTapper>
+              <WhileTapper scale={0.9}>
+                {step === 0 && (
+                  <Button
+                    className="w-[128px]"
+                    disabled={form.watch("username").length < 2}
+                    onClick={() => setStep(1)}
+                  >
+                    Weiter
+                  </Button>
+                )}
+                {step === 1 && (
+                  <Button
+                    className="w-[128px]"
+                    disabled={!form.watch("placeId")}
+                    onClick={() => setStep(2)}
+                  >
+                    Weiter
+                  </Button>
+                )}
+                {step === 2 && (
+                  <Button
+                    type="submit"
+                    className="w-[128px]"
+                    disabled={form.formState.isSubmitting}
+                  >
+                    {form.formState.isSubmitting && (
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                    )}
+                    Fertig
+                  </Button>
+                )}
+              </WhileTapper>
             </div>
           </form>
         </Form>

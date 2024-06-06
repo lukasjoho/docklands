@@ -5,6 +5,8 @@ import MusicButton from "./components/music/MusicButton";
 import MapsButton from "./components/maps/MapsButton";
 import ChatButton from "./components/chat/ChatButton";
 import ImageAnimation from "./components/home/ImageAnimation";
+import WhileTapper from "./components/shared/WhileTapper";
+import iphoneMockup from "@/public/images/iphone-mockup.png";
 
 export const revalidate = 7200;
 
@@ -24,7 +26,7 @@ export default function Home() {
           />
         </ImageAnimation>
         <div className="relative h-full w-full flex flex-col">
-          <div className="space-y-1 p-6 pb-8 bg-gradient-to-b from-black/30 to-transparent">
+          <div className="space-y-1 p-6 pb-8 bg-gradient-to-b from-black/30 to-transparent pt-12">
             <h1 className="text-xl text-white font-bold tracking-tight">
               <span className="opacity-75">Docklands Warm-Up</span> <br />
               <span className="opacity-100 text-4xl">Meet Again.</span>
@@ -43,30 +45,31 @@ export default function Home() {
 
           <div className="p-6 grid grid-cols-3 mt-auto gap-3">
             <div className="col-span-3">
-              <ChatButton />
+              <WhileTapper>
+                <ChatButton />
+              </WhileTapper>
             </div>
             <div className="col-span-1">
-              <WeatherButton />
+              <WhileTapper scale={0.9}>
+                <WeatherButton />
+              </WhileTapper>
             </div>
             <div className="col-span-1">
-              <MusicButton />
+              <WhileTapper scale={0.9}>
+                <MusicButton />
+              </WhileTapper>
             </div>
             <div className="col-span-1">
-              <MapsButton />
+              <WhileTapper scale={0.9}>
+                <MapsButton />
+              </WhileTapper>
             </div>
           </div>
         </div>
       </div>
-      <div className="hidden lg:grid relative w-screen h-[100dvh]  place-items-center">
-        <Image
-          src="/images/cover.webp"
-          fill
-          alt=""
-          style={{ objectFit: "cover" }}
-        />
-        <h1 className="relative text-6xl font-semibold text-white">
-          Besuche die Websit auf Mobile!
-        </h1>
+      <div className="hidden lg:flex relative w-screen h-[100dvh] items-center justify-center gap-24">
+        <h1 className="font-bold tracking-tighter text-4xl">Mobile-Only</h1>
+        <Image src={iphoneMockup} alt="" className="w-[320px]" />
       </div>
     </>
   );
