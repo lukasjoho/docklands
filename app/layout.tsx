@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Meet Again - 08. Juni - Pardo-Steg Münster",
   description:
     "Lass dir von Münst·E alle Fragen rund um das Docklands Warm-Up beantworten.",
-  metadataBase: new URL("https://meet-again.com"),
+  metadataBase: new URL("https://meet-again.de"),
 };
 
 export default function RootLayout({
