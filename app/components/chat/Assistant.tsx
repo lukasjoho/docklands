@@ -28,7 +28,9 @@ export default function Assistant() {
   const handleSubmit = (e: any) => {
     submitMessage(e);
     const userIdCookie = getCookie("userId");
-    createMessage({ text: input, cookieUserId: userIdCookie });
+    if (input) {
+      createMessage({ text: input, cookieUserId: userIdCookie });
+    }
   };
 
   return (
