@@ -11,9 +11,10 @@ import { FormProps, UseFormReturn } from "react-hook-form";
 export default function UsernameInput({ form }: { form: UseFormReturn<any> }) {
   useEffect(() => {
     setTimeout(() => {
+      console.log("focus username");
       form.setFocus("username");
-    }, 50);
-  }, [form]);
+    }, 200);
+  }, [form, form.setFocus]);
 
   return (
     <FormField

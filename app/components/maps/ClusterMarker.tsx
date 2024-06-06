@@ -1,12 +1,12 @@
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Ref, RefObject, useState } from "react";
 import { GeoJSON, SuperCluster } from "./types";
 import LocationMarker from "./LocationMarker";
 import { cn } from "@/lib/utils";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 export default function ClusterMarker({
   cluster,
@@ -25,12 +25,12 @@ export default function ClusterMarker({
   const { cluster: isCluster, point_count: pointCount } = cluster.properties;
   const [open, setOpen] = useState(false);
   return (
-    <Tooltip key={cluster.id} open={open} onOpenChange={setOpen}>
-      <TooltipTrigger key={cluster.id} disabled asChild>
+    <Popover key={cluster.id} open={open} onOpenChange={setOpen}>
+      <PopoverTrigger key={cluster.id} disabled asChild>
         <div
           key={cluster.id}
           className={cn(
-            "bg-primary ring-offset-background ring-[1.5px] ring-offset-2 ring-primary rounded-full text-white grid place-items-center font-medium text-sm",
+            "bg-slate-600 border-[3px] border-slate-500 ring-offset-slate-400 ring-[3px] ring-offset-[3px] ring-slate-300 rounded-full text-white grid place-items-center text-xs",
             className
           )}
           style={{
@@ -55,8 +55,8 @@ export default function ClusterMarker({
         >
           {pointCount}
         </div>
-      </TooltipTrigger>
-      <TooltipContent className="p-1">
+      </PopoverTrigger>
+      <PopoverContent className="p-1 w-auto">
         <div className="grid grid-cols-2 gap-1">
           {[...supercluster.getLeaves(cluster.id)].map((leaf: GeoJSON) => {
             const [longitude, latitude] = leaf.geometry.coordinates;
@@ -70,7 +70,7 @@ export default function ClusterMarker({
             );
           })}
         </div>
-      </TooltipContent>
-    </Tooltip>
+      </PopoverContent>
+    </Popover>
   );
 }

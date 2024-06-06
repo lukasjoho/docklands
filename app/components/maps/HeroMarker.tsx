@@ -15,7 +15,10 @@ export default function HeroMarker({ lat, lng }: { lat: number; lng: number }) {
           🎶
         </div>
       </PopoverTrigger>
-      <PopoverContent className="w-48 rounded-xl space-y-2">
+      <PopoverContent
+        className="w-48 space-y-2"
+        onPointerDownOutside={() => console.log("click outside")}
+      >
         <Image src={locationImage} alt="" className="w-full rounded-md" />
         <p className="text-sm text-muted-foreground">
           Hier ziehen die Beats ins Holz ein.

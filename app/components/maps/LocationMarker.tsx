@@ -1,15 +1,14 @@
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Prisma } from "@prisma/client";
 import { useState } from "react";
 import Avatar from "../shared/Avatar";
 import { getCookie } from "cookies-next";
 import useLocations from "@/lib/useLocations";
 import { cn } from "@/lib/utils";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 export default function LocationMarker({
   lat,
@@ -29,8 +28,8 @@ export default function LocationMarker({
   const isOwnLocation = location.user.cookieUserId === userIdCookie;
   const { removeUser } = useLocations();
   return (
-    <Tooltip key={location.id} open={open} onOpenChange={setOpen}>
-      <TooltipTrigger asChild key={location.id}>
+    <Popover key={location.id} open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild key={location.id}>
         <Avatar
           name={location.user.name}
           src={location.user.image}
@@ -40,13 +39,14 @@ export default function LocationMarker({
             setOpen(true);
           }}
         />
-      </TooltipTrigger>
-      <TooltipContent className="py-3 w-[160px]" key={location.id}>
+      </PopoverTrigger>
+
+      <PopoverContent className="w-[150px]" key={location.id}>
         <div className="flex flex-col items-center gap-2">
           <Avatar
             name={location.user.name}
             src={location.user.image}
-            className="w-24 h-24"
+            className="w-28 h-28"
           />
 
           <div className="text-center whitespace-nowrap w-full">
@@ -66,7 +66,7 @@ export default function LocationMarker({
             </button>
           )}
         </div>
-      </TooltipContent>
-    </Tooltip>
+      </PopoverContent>
+    </Popover>
   );
 }

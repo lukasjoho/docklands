@@ -118,22 +118,20 @@ export default function MapsButton() {
 
               if (isCluster) {
                 return (
-                  <>
-                    <Marker
+                  <Marker
+                    key={`cluster-${cluster.id}`}
+                    lat={latitude}
+                    lng={longitude}
+                  >
+                    <ClusterMarker
                       key={`cluster-${cluster.id}`}
-                      lat={latitude}
-                      lng={longitude}
-                    >
-                      <ClusterMarker
-                        key={`cluster-${cluster.id}`}
-                        cluster={cluster}
-                        points={points}
-                        supercluster={supercluster}
-                        mapRef={mapRef}
-                        className="-translate-y-1/2 -translate-x-1/2"
-                      />
-                    </Marker>
-                  </>
+                      cluster={cluster}
+                      points={points}
+                      supercluster={supercluster}
+                      mapRef={mapRef}
+                      className="-translate-y-1/2 -translate-x-1/2"
+                    />
+                  </Marker>
                 );
               }
 

@@ -4,7 +4,6 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import QueryProvider from "./providers/QueryProvider";
 import CookieManager from "./components/shared/CookieManager";
-import { Tooltip, TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} overflow-hidden`}>
         <main className="flex min-h-[100dvh] flex-col overflow-hidden">
-          <QueryProvider>
-            <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
-          </QueryProvider>
+          <QueryProvider>{children}</QueryProvider>
         </main>
         <Toaster richColors position="top-center" />
         <CookieManager />
