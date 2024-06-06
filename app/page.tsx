@@ -26,7 +26,7 @@ export default function Home() {
           />
         </ImageAnimation>
         <div className="relative h-full w-full flex flex-col">
-          <div className="space-y-1 p-6 pb-8 bg-gradient-to-b from-black/30 to-transparent pt-12">
+          <div className="space-y-1 p-6 pb-8 bg-gradient-to-b from-black/30 to-transparent">
             <h1 className="text-xl text-white font-bold tracking-tight">
               <span className="opacity-75">Docklands Warm-Up</span> <br />
               <span className="opacity-100 text-4xl">Meet Again.</span>
