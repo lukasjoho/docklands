@@ -30,10 +30,10 @@ const libraries: Libraries = ["places"];
 export default function MapsButton() {
   const defaultProps = {
     center: {
-      lat: 53.551086,
-      lng: 9.993682,
+      lat: 50.851086,
+      lng: 8.493682,
     },
-    zoom: 5,
+    zoom: 4.9,
   };
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
