@@ -10,7 +10,7 @@
 
 # Tools
 Built with:
-- [NextJS](https://nextjs.org/docs): OpenAI Assistant API
+- [OpenAI Asstant API](https://nextjs.org/docs): Chat Feature
 - [Google Map React](https://www.npmjs.com/package/google-map-react): Maps Render
 - [Uploadthing](https://uploadthing.com): Image Storage & Uploading
 - [Openweathermap](https://openweathermap.org/): Weather API
