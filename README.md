@@ -26,9 +26,7 @@ npm install
 ```
 
 ## Environment Variables
-
-1. Set up the following cloud spaces
-3. Create `.env` file and paste the variables.
+Create `.env` file and paste the variables.
 
 ```sh-session
 OPENAI_API_KEY='xxx'
