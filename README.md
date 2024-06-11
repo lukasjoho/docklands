@@ -5,7 +5,7 @@
     <br/>
     <br/>
 </div>
-![thumb-meet-again](https://github.com/lukasjoho/docklands/assets/53558967/58bc60f0-5b65-4689-97ab-538d57ad8338)
+![alt text](https://github.com/lukasjoho/docklands/assets/53558967/58bc60f0-5b65-4689-97ab-538d57ad8338)
 
 # Tools
 Built with:
