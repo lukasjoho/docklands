@@ -7,6 +7,7 @@ import ChatButton from "./components/chat/ChatButton";
 import ImageAnimation from "./components/home/ImageAnimation";
 import WhileTapper from "./components/shared/WhileTapper";
 import iphoneMockup from "@/public/images/iphone-mockup.png";
+import TicketButton from "./components/ticket/TicketButton";
 
 export const revalidate = 7200;
 
@@ -44,6 +45,11 @@ export default function Home() {
           </div>
 
           <div className="p-6 grid grid-cols-3 mt-auto gap-3">
+            <div className="col-span-3">
+              <WhileTapper>
+                <TicketButton />
+              </WhileTapper>
+            </div>
             <div className="col-span-3">
               <WhileTapper>
                 <ChatButton />

@@ -21,6 +21,8 @@ import ImageScreen from "./maps-form/ImageScreen";
 import useLocations from "@/lib/useLocations";
 import { getCookie } from "cookies-next";
 import WhileTapper from "../shared/WhileTapper";
+import { useQueryClient } from "@tanstack/react-query";
+import useUserName from "@/lib/useUser";
 
 const formSchema = z.object({
   username: z
@@ -43,10 +45,11 @@ export default function MapsDrawerContent({
   onSubmitSuccess,
   onClose,
 }: MapsFormProps) {
+  const { username } = useUserName();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      username: username || "",
       placeName: "",
       placeId: "",
       imageUrl: "",
@@ -55,6 +58,7 @@ export default function MapsDrawerContent({
 
   const { addLocation } = useLocations();
 
+  const queryClient = useQueryClient();
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const userIdCookie = getCookie("userId");
     const results = await getGeocode({ placeId: values.placeId });
@@ -68,13 +72,14 @@ export default function MapsDrawerContent({
       },
       location: { lat, lng, name: values.placeName, placeId: values.placeId },
     });
+    queryClient.invalidateQueries({ queryKey: ["user"] });
     onSubmitSuccess?.();
   }
 
   const [step, setStep] = useState<number>(0);
 
   return (
-    <DrawerContent className="px-8 pb-8" max>
+    <DrawerContent max>
       <DrawerHeader>
         <DrawerTitle>
           {step === 0 && "Wie heißt du?"}
@@ -88,8 +93,16 @@ export default function MapsDrawerContent({
             onSubmit={form.handleSubmit(onSubmit)}
             className="grow flex flex-col gap-4 pt-12"
           >
-            {step === 0 && <UsernameInput form={form} />}
-            {step === 1 && <PlaceInput form={form} />}
+            {step === 0 && (
+              <div className="px-4">
+                <UsernameInput form={form} />
+              </div>
+            )}
+            {step === 1 && (
+              <div className="px-4">
+                <PlaceInput form={form} />
+              </div>
+            )}
             {step === 2 && <ImageScreen form={form} />}
 
             <div className="mt-auto flex justify-between">

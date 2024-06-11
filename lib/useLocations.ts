@@ -12,6 +12,7 @@ export default function useLocations() {
     mutationFn: createLocation,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY] });
+      queryClient.invalidateQueries({ queryKey: ["user"] });
       toast.success("Dein Ort wurde hinzugefügt.");
     },
     onError: () => {
@@ -35,6 +36,7 @@ export default function useLocations() {
           cookieUserId: location.user.cookieUserId || null,
           name: location.user.name,
           image: location.user.imageUrl || null,
+          registered: false,
           createdAt: new Date().toISOString() as unknown as Date,
           updatedAt: new Date().toISOString() as unknown as Date,
         },

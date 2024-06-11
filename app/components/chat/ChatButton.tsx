@@ -13,7 +13,11 @@ export default function Chat() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="white" className="w-full" size="lg">
+        <Button
+          className="blur-cust text-white bg-white/10 border-[1.5px] border-white w-full"
+          size="lg"
+          variant="none"
+        >
           <BotMessageSquare />
           Münst·E starten
         </Button>

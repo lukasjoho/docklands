@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import prisma from "./prisma";
 
 export async function getLocations() {
@@ -29,10 +30,15 @@ export async function createLocation({
       lng: location.lng,
       placeId: location.placeId,
       user: {
-        create: {
-          name: user.name,
-          image: user.imageUrl,
-          cookieUserId: user.cookieUserId,
+        connectOrCreate: {
+          where: {
+            cookieUserId: user.cookieUserId,
+          },
+          create: {
+            name: user.name,
+            image: user.imageUrl,
+            cookieUserId: user.cookieUserId,
+          },
         },
       },
     },
@@ -66,4 +72,39 @@ export async function createMessage({
     },
   });
   return message;
+}
+
+export async function upsertUser({
+  cookieUserId,
+  name,
+}: {
+  cookieUserId: string;
+  name: string;
+}) {
+  const user = await prisma.user.upsert({
+    where: {
+      cookieUserId: cookieUserId,
+    },
+    update: {
+      name,
+      registered: true,
+    },
+    create: {
+      name,
+      cookieUserId,
+      registered: true,
+    },
+  });
+  return user;
+}
+
+export async function getUserName({ cookieUserId }: { cookieUserId?: string }) {
+  if (!cookieUserId) return;
+  const user = await prisma.user.findUnique({
+    where: {
+      cookieUserId,
+    },
+  });
+  if (!user) return null;
+  return user.name;
 }

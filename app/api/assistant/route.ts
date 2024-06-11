@@ -1,6 +1,11 @@
 import { AssistantResponse } from "ai";
 import OpenAI from "openai";
 import { cookies } from "next/headers";
+import {
+  FunctionToolCall,
+  ToolCall,
+} from "openai/resources/beta/threads/runs/steps.mjs";
+import prisma from "@/lib/prisma";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
@@ -31,6 +36,7 @@ export async function POST(req: Request) {
     { threadId, messageId: createdMessage.id },
     async ({ forwardStream, sendDataMessage }) => {
       // Run the assistant on the thread
+      console.log("--- before stream");
       const runStream = openai.beta.threads.runs.stream(threadId, {
         assistant_id:
           process.env.ASSISTANT_ID ??
@@ -47,13 +53,24 @@ export async function POST(req: Request) {
         runResult?.status === "requires_action" &&
         runResult.required_action?.type === "submit_tool_outputs"
       ) {
+        console.log("inside loop");
         const tool_outputs =
           runResult.required_action.submit_tool_outputs.tool_calls.map(
             (toolCall: any) => {
-              const parameters = JSON.parse(toolCall.function.arguments);
+              console.log("--- inside tooloutputs");
+              if (!runResult?.id) {
+                throw new Error("Run ID not found");
+              }
+              console.log("--- switching");
 
               switch (toolCall.function.name) {
                 // configure your tool calls here
+                case "getPartyGuests":
+                  getPartyGuests({
+                    threadId,
+                    runId: runResult.id,
+                    callId: toolCall.id,
+                  });
 
                 default:
                   throw new Error(
@@ -62,6 +79,7 @@ export async function POST(req: Request) {
               }
             }
           );
+        console.log("---", tool_outputs);
 
         runResult = await forwardStream(
           openai.beta.threads.runs.submitToolOutputsStream(
@@ -73,4 +91,41 @@ export async function POST(req: Request) {
       }
     }
   );
+}
+
+async function getPartyGuests({
+  threadId,
+  runId,
+  callId,
+}: {
+  threadId: string;
+  runId: string;
+  callId: string;
+}) {
+  console.log("--- running pary guests");
+
+  const users = await prisma.user.findMany({
+    include: {
+      location: true,
+    },
+  });
+  //map over users (which have property name and location). The location prop has the property name. return a string of all users with their location in brackets and separate each user by a comma. Location is possibly null
+  const data = users
+    .map(
+      (user) =>
+        `Name: ${user.name} Location: ${user.location?.name ?? "unknown"}`
+    )
+    .join(", ");
+  console.log("--- running submission", threadId, runId);
+
+  await openai.beta.threads.runs.submitToolOutputs(threadId, runId, {
+    tool_outputs: [
+      {
+        tool_call_id: callId,
+        output: JSON.stringify(data),
+      },
+    ],
+  });
+  console.log("--- finished submission");
+  return;
 }

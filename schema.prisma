@@ -17,8 +17,8 @@ model User {
     location  Location?
     createdAt DateTime   @default(now())
     updatedAt DateTime   @updatedAt
-    cookieUserId String?
-    
+    cookieUserId String? @unique
+    registered Boolean @default(false)  
 }
 
 model Location {
@@ -40,4 +40,6 @@ model Message {
   updatedAt DateTime   @updatedAt
   cookieUserId String?
 }  
+
+
 
