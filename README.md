@@ -1,6 +1,6 @@
 <div align="center" >
     <h1 align="center">Meet Again</h1>
-    <p>A for-fun event promotion page I build for a friends reunion event, that I organized with close friends of mine.</p>
+    <p>A for-fun event promotion page I built for a friends reunion event, that I organized with close friends of mine.</p>
     🌐 <a href="https://meet-again.de">meet-again.de</a>
     <br/>
     <br/>
