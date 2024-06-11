@@ -23,6 +23,20 @@ export async function createLocation({
   };
   location: { lat: number; lng: number; name: string; placeId: string };
 }) {
+  const dbUser = await prisma.user.upsert({
+    where: {
+      cookieUserId: user.cookieUserId,
+    },
+    update: {
+      name: user.name,
+      image: user.imageUrl,
+    },
+    create: {
+      name: user.name,
+      image: user.imageUrl,
+      cookieUserId: user.cookieUserId,
+    },
+  });
   const dbLocation = await prisma.location.create({
     data: {
       name: location.name,
@@ -30,15 +44,8 @@ export async function createLocation({
       lng: location.lng,
       placeId: location.placeId,
       user: {
-        connectOrCreate: {
-          where: {
-            cookieUserId: user.cookieUserId,
-          },
-          create: {
-            name: user.name,
-            image: user.imageUrl,
-            cookieUserId: user.cookieUserId,
-          },
+        connect: {
+          id: dbUser.id,
         },
       },
     },
