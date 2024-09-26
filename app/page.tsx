@@ -47,12 +47,12 @@ export default function Home() {
           <div className="p-6 grid grid-cols-3 mt-auto gap-3">
             <div className="col-span-3">
               <WhileTapper>
-                <TicketButton />
+                <ChatButton />
               </WhileTapper>
             </div>
             <div className="col-span-3">
               <WhileTapper>
-                <ChatButton />
+                <TicketButton />
               </WhileTapper>
             </div>
             <div className="col-span-1">

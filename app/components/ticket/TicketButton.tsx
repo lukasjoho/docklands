@@ -33,7 +33,11 @@ export default function TicketButton() {
       }}
     >
       <DrawerTrigger asChild>
-        <Button variant="white" className="w-full" size="lg">
+        <Button
+          variant="none"
+          className="blur-cust text-white bg-white/10 border-[1.5px] border-white w-full"
+          size="lg"
+        >
           <Ticket />
           Early Bird Tickets 2025
         </Button>
